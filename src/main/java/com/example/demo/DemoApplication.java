@@ -24,7 +24,7 @@ public class DemoApplication {
                 produces = MediaType.APPLICATION_JSON_VALUE)
 	String getCats() {
 		return "[ {\"id\": 1, \"name\": \"Eddie\", \"age\": 1.8, \"transportStatus\": \"IN_TRANSIT\" }, "
-				+ "{\"id\": 2, \"name\": \"Joschi\", \"age\": 12} \"transportStatus\\\": \"IN_CAT_HEAVEN\" ]";
+				+ "{\"id\": 2, \"name\": \"Joschi\", \"age\": 12, \"transportStatus\": \"IN_CAT_HEAVEN\"} ]";
 	}
 	
 }
