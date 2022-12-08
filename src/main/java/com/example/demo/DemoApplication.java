@@ -17,7 +17,7 @@ public class DemoApplication {
 
 	@RequestMapping("/")
 	String sayHello() {
-		return "Hack-a-cat!";
+		return "miau!";
 	}
 	
 	@RequestMapping(value = "/cats", method = RequestMethod.GET,
