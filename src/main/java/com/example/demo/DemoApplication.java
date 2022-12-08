@@ -17,4 +17,11 @@ public class DemoApplication {
 	String sayHello() {
 		return "Hack-a-cat!";
 	}
+	
+	@RequestMapping(value = "/cats", method = RequestMethod.GET,
+                produces = MediaType.APPLICATION_JSON_VALUE)
+	String getCats() {
+		return "[ {\"id\": 1, \"name\": \"Eddie\", \"age\": 1.8}, {\"id\": 2, \"name\": \"Joschi\", \"age\": 12} ]";
+	}
+	
 }
