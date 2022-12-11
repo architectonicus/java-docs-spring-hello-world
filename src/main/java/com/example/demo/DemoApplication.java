@@ -27,4 +27,10 @@ public class DemoApplication {
 				+ "{\"id\": 2, \"name\": \"Joschi\", \"age\": 12, \"transportStatus\": \"IN_CAT_HEAVEN\"} ]";
 	}
 	
+	@RequestMapping(value = "/check", method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+	String getProp() {
+	return System.getenv("DAMAP") + " - " + System.getProperty("DAMAP", "none found");
+	}
+	
 }
