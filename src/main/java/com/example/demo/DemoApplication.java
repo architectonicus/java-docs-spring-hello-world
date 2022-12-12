@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,6 +31,25 @@ public class DemoApplication {
 	String getCats() {
 		return "[ {\"id\": 1, \"name\": \"Eddie\", \"age\": 1.8, \"transportStatus\": \"IN_TRANSIT\" }, "
 				+ "{\"id\": 2, \"name\": \"Joschi\", \"age\": 12, \"transportStatus\": \"IN_CAT_HEAVEN\"} ]";
+	}
+	
+	@RequestMapping(value = "/echo", method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_XHTML_XML_VALUE)
+	String echo( @RequestHeader Map<String, String> headers, @RequestBody String body) {
+		
+		
+		StringBuffer sb = new StringBuffer();
+		sb.append("---");
+	    headers.forEach((key, value) -> {
+	        sb.append(String.format("%s: %s", key, value));
+	        sb.append("\n");
+	    });
+	    sb.append("\n");
+	    sb.append(body);
+	    sb.append("---");
+	    
+		return sb.toString();
+			
 	}
 	
 	@RequestMapping(value = "/check", method = RequestMethod.GET,
