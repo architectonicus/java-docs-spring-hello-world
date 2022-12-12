@@ -35,7 +35,8 @@ public class DemoApplication {
 	
 	@RequestMapping(value = "/echo", method = RequestMethod.POST,
             produces = MediaType.APPLICATION_XHTML_XML_VALUE)
-	String echo( @RequestHeader Map<String, String> headers, @RequestBody String body) {
+	String echo( @RequestHeader(required = false) Map<String, String> headers, 
+			@RequestBody(required = false) String body) {
 		
 		
 		StringBuffer sb = new StringBuffer();
@@ -54,7 +55,7 @@ public class DemoApplication {
 	
 	@RequestMapping(value = "/check", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-	String getProp(@RequestHeader(name = "Authorization") String authHeader) {
+	String getProp(@RequestHeader(name = "Authorization", required = false) String authHeader) {
 		
 		final String input = System.getenv("DAMAP");
 		String decoded = new String(Base64.getDecoder().decode(authHeader));
