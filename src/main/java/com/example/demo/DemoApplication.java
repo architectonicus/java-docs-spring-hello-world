@@ -1,11 +1,16 @@
 package com.example.demo;
 
+import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.http.MediaType;
 
 @SpringBootApplication
 @RestController
@@ -29,8 +34,35 @@ public class DemoApplication {
 	
 	@RequestMapping(value = "/check", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-	String getProp() {
-	return System.getenv("DAMAP") + " - " + System.getProperty("DAMAP", "none found");
+	String getProp(@RequestHeader(name = "Authorization") String authHeader) {
+		
+		final String input = System.getenv("DAMAP");
+		String decoded = new String(Base64.getDecoder().decode(authHeader));
+		return doCheck(decoded, input);
+			
 	}
+	
+	String doCheck(String authHeader, String mapString) {
+		
+		final Map<String, String> map = new HashMap<>();
+		Boolean v = Boolean.FALSE;
+		if( authHeader == null || mapString == null ) {
+			
+		} else {
+			for(String kv : mapString.split(",")) {
+				String[] s = kv.split("\\|");
+				map.put(s[0], s[1]);
+			}
+			String[] u = authHeader.split(":");
+			v = map.containsKey(u[0]) && map.get(u[0]) != null;
+		}
+		
+		
+		
+				
+		return "{\"value\": \""+v.toString()+"\"}";
+		
+	}
+	
 	
 }
