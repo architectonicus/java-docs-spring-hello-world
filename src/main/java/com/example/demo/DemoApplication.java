@@ -47,6 +47,7 @@ public class DemoApplication {
 	    });
 	    sb.append("\n");
 	    sb.append(body);
+	    sb.append("\n");
 	    sb.append("---");
 	    
 		return sb.toString();
