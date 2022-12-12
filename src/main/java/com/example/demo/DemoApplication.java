@@ -33,7 +33,7 @@ public class DemoApplication {
 				+ "{\"id\": 2, \"name\": \"Joschi\", \"age\": 12, \"transportStatus\": \"IN_CAT_HEAVEN\"} ]";
 	}
 	
-	@RequestMapping(value = "/echo", method = RequestMethod.GET,
+	@RequestMapping(value = "/echo", method = RequestMethod.POST,
             produces = MediaType.APPLICATION_XHTML_XML_VALUE)
 	String echo( @RequestHeader Map<String, String> headers, @RequestBody String body) {
 		
