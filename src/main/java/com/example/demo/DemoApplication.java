@@ -58,8 +58,17 @@ public class DemoApplication {
             produces = MediaType.APPLICATION_JSON_VALUE)
 	String getProp(@RequestHeader(name = "Authorization", required = false) String authHeader) {
 		
-		final String input = System.getenv("DAMAP");
-		String decoded = new String(Base64.getDecoder().decode(authHeader));
+		String input = System.getenv("DAMAP");
+		if (input==null){
+			input="";
+		}
+		String decoded = "";
+		if( authHeader!=null) {
+			decoded = new String(Base64.getDecoder().decode(authHeader));
+		} else {
+			decoded="";
+		}
+		
 		return doCheck(decoded, input);
 			
 	}
@@ -73,7 +82,9 @@ public class DemoApplication {
 		} else {
 			for(String kv : mapString.split(",")) {
 				String[] s = kv.split("\\|");
-				map.put(s[0], s[1]);
+				if( s.length == 2) {
+					map.put(s[0], s[1]);
+				}
 			}
 			String[] u = authHeader.split(":");
 			v = map.containsKey(u[0]) && map.get(u[0]) != null;
