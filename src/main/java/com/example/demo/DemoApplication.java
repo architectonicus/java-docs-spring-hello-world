@@ -64,7 +64,7 @@ public class DemoApplication {
 		}
 		String decoded = "";
 		if( authHeader!=null) {
-			decoded = new String(Base64.getDecoder().decode(authHeader));
+			decoded = new String(Base64.getDecoder().decode(authHeader.replace("Basic ", "")));
 		} else {
 			decoded="";
 		}
