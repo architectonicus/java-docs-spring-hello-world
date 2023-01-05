@@ -76,7 +76,7 @@ public class DemoApplication {
 		Instant instant = Instant.now();
 		int mins = instant.atZone(ZoneOffset.UTC).getMinute();
 		
-		return (mins < 29) ? "Past " + mins + " since hour" : "Still " + mins + " till full hour";
+		return (mins < 29) ? "Past " + mins + " since hour" : "Still " + (60-mins) + " till full hour";
 			
 	}
 
