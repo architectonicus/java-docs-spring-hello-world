@@ -58,7 +58,7 @@ public class DemoApplication {
 			
 	}
 	
-	@RequestMapping(value = "/time", method = RequestMethod.POST,
+	@RequestMapping(value = "/time", method = RequestMethod.GET,
             produces = MediaType.TEXT_PLAIN_VALUE)
 	String time( ) {
 		
@@ -67,7 +67,7 @@ public class DemoApplication {
 			
 	}
 
-	@RequestMapping(value = "/time2", method = RequestMethod.POST,
+	@RequestMapping(value = "/time2", method = RequestMethod.GET,
             produces = MediaType.TEXT_PLAIN_VALUE)
 	String time2( ) {
 		
