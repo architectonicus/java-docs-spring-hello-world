@@ -1,6 +1,10 @@
 package com.example.demo;
 
+import java.time.Instant;
+import java.time.temporal.ChronoField;
+import java.time.temporal.TemporalField;
 import java.util.Base64;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,7 +44,7 @@ public class DemoApplication {
 		
 		
 		StringBuffer sb = new StringBuffer();
-		sb.append("---");
+		sb.append("---\n");
 	    headers.forEach((key, value) -> {
 	        sb.append(String.format("%s: %s", key, value));
 	        sb.append("\n");
@@ -53,6 +57,28 @@ public class DemoApplication {
 		return sb.toString();
 			
 	}
+	
+	@RequestMapping(value = "/time", method = RequestMethod.POST,
+            produces = MediaType.TEXT_PLAIN_VALUE)
+	String time( ) {
+		
+		
+		return new Date().toString();
+			
+	}
+
+	@RequestMapping(value = "/time2", method = RequestMethod.POST,
+            produces = MediaType.TEXT_PLAIN_VALUE)
+	String time2( ) {
+		
+		
+		Instant instant = Instant.now();
+		int mins = instant.get(ChronoField.MINUTE_OF_HOUR);
+		
+		return (mins < 29) ? "Past " + mins + " since hour" : "Still " + mins + " till full hour";
+			
+	}
+
 	
 	@RequestMapping(value = "/check", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
