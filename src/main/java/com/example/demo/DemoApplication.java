@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import java.time.Instant;
+import java.time.ZoneOffset;
 import java.time.temporal.ChronoField;
 import java.time.temporal.TemporalField;
 import java.util.Base64;
@@ -73,7 +74,7 @@ public class DemoApplication {
 		
 		
 		Instant instant = Instant.now();
-		int mins = instant.get(ChronoField.MINUTE_OF_HOUR);
+		int mins = instant.atZone(ZoneOffset.UTC).getMinute();
 		
 		return (mins < 29) ? "Past " + mins + " since hour" : "Still " + mins + " till full hour";
 			
